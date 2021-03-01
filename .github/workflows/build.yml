@@ -14,9 +14,9 @@ jobs:
       - name: Install dependencies
         run: sudo apt install git subversion build-essential python gawk unzip libncurses5-dev zlib1g-dev libssl-dev wget time libncurses-dev
       - name: Download OpenWrt SDK
-        run: curl -o openwrt-sdk.tar.xz https://downloads.openwrt.org/snapshots/targets/ath79/generic/openwrt-sdk-ath79-generic_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+        run: curl -o openwrt-sdk.tar.xz https://downloads.openwrt.org/releases/19.07.7/targets/ramips/mt7621/openwrt-sdk-19.07.7-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64.tar.xz
       - name: Extract OpenWrt SDK
-        run: tar xf openwrt-sdk.tar.xz && mv openwrt-sdk-ath79-generic_gcc-8.4.0_musl.Linux-x86_64 sdk
+        run: tar xf openwrt-sdk.tar.xz && mv openwrt-sdk-19.07.7-ramips-mt7621_gcc-7.5.0_musl.Linux-x86_64 sdk
       - name: Create config
         run: make -C sdk defconfig && echo "CONFIG_SRC_TREE_OVERRIDE=y" >> sdk/.config
       - name: Update package feed
@@ -29,4 +29,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: output
-          path: sdk/bin/packages/mips_24kc/packages
+          path: sdk/bin/packages/mipsel_24kc/packages
